@@ -5,7 +5,15 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="KeyaLens.Views.MainPage"
              Title="MainPage">
-  <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-    <Label Text="{Binding Title}" />
-  </StackLayout>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Label Text="{Binding PhotoURL.Value}" />
+        <Button Text="TakePhoto" Command="{Binding TakePhotoCommand}"/>
+        <ListView ItemsSource="{Binding TagList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding TagName}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>
