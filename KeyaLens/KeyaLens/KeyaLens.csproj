@@ -112,6 +112,10 @@
       <Project>{7895e057-df96-44f2-84f7-b05f987330c5}</Project>
       <Name>KeyaLens.CustomVisionService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\KeyaLens.KeyakiMemberService\KeyaLens.KeyakiMemberService.csproj">
+      <Project>{dada2c2d-4611-47e4-af67-cf3d86db3de4}</Project>
+      <Name>KeyaLens.KeyakiMemberService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

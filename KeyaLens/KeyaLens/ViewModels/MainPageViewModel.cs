@@ -8,6 +8,8 @@ using System.IO;
 using KeyaLens.CustomVisionService;
 using System.Linq;
 using System.Collections.Generic;
+using KeyaLens.KeyakiMemberService;
+using Xamarin.Forms;
 
 namespace KeyaLens.ViewModels
 {
@@ -15,17 +17,21 @@ namespace KeyaLens.ViewModels
     {
         private readonly ICameraClient cameraClient;
         private readonly ICustomVisionClient customVisionClient;
+        private readonly IKeyakiMemberClient keyakiMembeClient;
 
         public ReactiveProperty<string> PhotoURL { get; set; } = new ReactiveProperty<string>();
         public ReadOnlyReactiveCollection<string> TagList { get; set; }
+        public ReactiveProperty<string> TappedMember { get; set; } = new ReactiveProperty<string>();
+
 
         public ReactiveCommand TakePhotoCommand { get; private set; } = new ReactiveCommand();
 
 
-        public MainPageViewModel(ICameraClient cameraclient, ICustomVisionClient customvisionclient)
+        public MainPageViewModel(ICameraClient cameraclient, ICustomVisionClient customvisionclient, IKeyakiMemberClient keyakimemberclient)
         {
             cameraClient = cameraclient;
             customVisionClient = customvisionclient;
+            keyakiMembeClient = keyakimemberclient;
 
             PhotoURL = cameraClient.ImageURL;
 
@@ -40,6 +46,17 @@ namespace KeyaLens.ViewModels
                 .Subscribe(_ =>
                 {
                     cameraClient.TakePhoto();
+                });
+
+            TappedMember
+                .Where(memberName => !string.IsNullOrWhiteSpace(memberName))
+                .Subscribe(memberName =>
+                {
+                    keyakiMembeClient.GetMemberNameAsync();
+
+                    var URL = keyakiMembeClient.MemberCollection
+                    .First(memberInfo => memberInfo.Name == memberName).memberPageURL;
+                    Device.OpenUri(new Uri(URL));
                 });
         }
 

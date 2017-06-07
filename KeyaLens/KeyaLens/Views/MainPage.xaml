@@ -8,7 +8,6 @@
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
         <Label Text="{Binding PhotoURL.Value}" />
         <Button Text="TakePhoto" Command="{Binding TakePhotoCommand}"/>
-        <ListView ItemsSource="{Binding TagList, Mode=OneWay}">
-        </ListView>
+        <ListView ItemsSource="{Binding TagList, Mode=OneWay}" SelectedItem="{Binding TappedMember.Value, Mode=TwoWay}"/>
     </StackLayout>
 </ContentPage>
