@@ -10,6 +10,7 @@ using System.Linq;
 using System.Collections.Generic;
 using KeyaLens.KeyakiMemberService;
 using Xamarin.Forms;
+using KeyaLens.DataModel;
 
 namespace KeyaLens.ViewModels
 {
@@ -21,8 +22,8 @@ namespace KeyaLens.ViewModels
 
         public ReactiveProperty<string> PhotoURL { get; set; } = new ReactiveProperty<string>();
         public ReadOnlyReactiveCollection<string> TagList { get; set; }
-        public ReadOnlyReactiveCollection<KeyakiMemberInfo> MemberInfoList { get; set; }
-        public ReactiveProperty<KeyakiMemberInfo> TappedMember { get; set; } = new ReactiveProperty<KeyakiMemberInfo>();
+        public ReadOnlyReactiveCollection<PredictionResultModel> MemberInfoList { get; set; }
+        public ReactiveProperty<PredictionResultModel> TappedMember { get; set; } = new ReactiveProperty<PredictionResultModel>();
 
         public ReactiveCommand TakePhotoCommand { get; private set; } = new ReactiveCommand();
 
@@ -39,7 +40,12 @@ namespace KeyaLens.ViewModels
 
             TagList = customVisionClient.ImageTagList.ToReadOnlyReactiveCollection(tag => tag.TagName);
 
-            MemberInfoList = TagList.ToReadOnlyReactiveCollection(tag => keyakiMembeClient.MemberCollection.First(member => member.Name == tag));
+            MemberInfoList = TagList.ToReadOnlyReactiveCollection(MemberName =>
+            {
+                var MemberInfo = keyakiMembeClient.MemberCollection.First(member => member.Name == MemberName);
+                var probablyRank = customVisionClient.ImageTagList.First(tag => tag.TagName == MemberName).Probably;
+                return new PredictionResultModel() { Name = MemberName, ProfileImageURL = MemberInfo.ProfileImageURL, ProfileLinkImage = MemberInfo.memberPageURL, ProbablyRank = probablyRank };
+            });
 
             TakePhotoCommand.Subscribe(_ => { cameraClient.TakePhoto(); });
 

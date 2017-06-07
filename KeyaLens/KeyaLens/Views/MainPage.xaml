@@ -13,7 +13,10 @@
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
                             <Image Source="{Binding ProfileImageURL}" HeightRequest="150" WidthRequest="150"/>
-                            <Label Text="{Binding Name}" FontSize="Large"/>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Name}" FontSize="Large"/>
+                                <Label Text="{Binding ProbablyRank}" FontSize="Medium"/>
+                            </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
