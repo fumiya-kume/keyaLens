@@ -35,27 +35,17 @@ namespace KeyaLens.ViewModels
 
             PhotoURL = cameraClient.ImageURL;
 
-            PhotoURL.Subscribe(URL =>
-            {
-                customVisionClient.PredicateImageFromMemoryStream(URL);
-            });
+            PhotoURL.Subscribe(URL => { customVisionClient.PredicateImageFromMemoryStream(URL); });
 
             TagList = customVisionClient.ImageTagList.ToReadOnlyReactiveCollection(tag => tag.TagName);
 
-            TakePhotoCommand
-                .Subscribe(_ =>
-                {
-                    cameraClient.TakePhoto();
-                });
+            TakePhotoCommand.Subscribe(_ => { cameraClient.TakePhoto(); });
 
             TappedMember
                 .Where(memberName => !string.IsNullOrWhiteSpace(memberName))
                 .Subscribe(memberName =>
                 {
-                    keyakiMembeClient.GetMemberNameAsync();
-
-                    var URL = keyakiMembeClient.MemberCollection
-                    .First(memberInfo => memberInfo.Name == memberName).memberPageURL;
+                    var URL = keyakiMembeClient.MemberCollection.First(memberInfo => memberInfo.Name == memberName).memberPageURL;
                     Device.OpenUri(new Uri(URL));
                 });
         }
