@@ -8,12 +8,7 @@
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
         <Label Text="{Binding PhotoURL.Value}" />
         <Button Text="TakePhoto" Command="{Binding TakePhotoCommand}"/>
-        <ListView ItemsSource="{Binding TagList}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding TagName}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+        <ListView ItemsSource="{Binding TagList, Mode=OneWay}">
         </ListView>
     </StackLayout>
 </ContentPage>

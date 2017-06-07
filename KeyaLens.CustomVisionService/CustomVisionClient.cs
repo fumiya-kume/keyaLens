@@ -20,22 +20,21 @@ namespace KeyaLens.CustomVisionService
         /// <returns></returns>
         public async void PredicateImageFromMemoryStream(string ImageURL)
         {
-            var Image = await FileSystem.Current.LocalStorage.GetFileAsync(ImageURL);
+            if (string.IsNullOrWhiteSpace(ImageURL)) return;
 
-            byte[] buffer = new byte[100];
-            using (System.IO.Stream stream = await Image.OpenAsync(FileAccess.ReadAndWrite))
+            var Image = await FileSystem.Current.GetFileFromPathAsync(ImageURL.Replace("\\\\", "\\"));
+
+            var ImageStream = await Image.OpenAsync(FileAccess.ReadAndWrite);
+
+            var result = GetCustomVisionEndPoint().PredictImage(GetProjectGUID(), ImageStream);
+            ImageTagList.Clear();
+            var TagInfoList = result.Predictions
+                .Select(prefiction => new CustomVisionTagInfo() { TagName = prefiction.Tag, Probably = prefiction.Probability })
+                .ToList();
+
+            foreach (var item in TagInfoList)
             {
-                stream.Write(buffer, 0, 100);
-                var result = GetCustomVisionEndPoint().PredictImage(GetProjectGUID(), stream);
-                ImageTagList.Clear();
-                result.Predictions
-                    .Select(prefiction => new CustomVisionTagInfo() { TagName = prefiction.Tag, Probably = prefiction.Probability })
-                    .ToList()
-                    .Select(info =>
-                    {
-                        ImageTagList.Add(info);
-                        return 0;
-                    });
+                ImageTagList.Add(item);
             }
         }
 

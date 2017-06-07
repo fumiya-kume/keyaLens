@@ -3,7 +3,7 @@ using KeyaLens.Views;
 using Xamarin.Forms;
 using KeyaLens.CameraService;
 using Microsoft.Practices.Unity;
-//using KeyaLens.CustomVisionService;
+using KeyaLens.CustomVisionService;
 
 namespace KeyaLens
 {
@@ -24,7 +24,7 @@ namespace KeyaLens
             Container.RegisterTypeForNavigation<MainPage>();
 
             Container.RegisterType<ICameraClient,CameraClient>(new ContainerControlledLifetimeManager());
-            //Container.RegisterType<ICustomVisionClient, CustomVisionClient>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<ICustomVisionClient, CustomVisionClient>(new ContainerControlledLifetimeManager());
         }
     }
 }
