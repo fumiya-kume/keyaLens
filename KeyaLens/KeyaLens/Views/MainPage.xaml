@@ -6,8 +6,18 @@
              x:Class="KeyaLens.Views.MainPage"
              Title="MainPage">
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Label Text="{Binding PhotoURL.Value}" />
         <Button Text="TakePhoto" Command="{Binding TakePhotoCommand}"/>
-        <ListView ItemsSource="{Binding TagList, Mode=OneWay}" SelectedItem="{Binding TappedMember.Value, Mode=TwoWay}"/>
+        <ListView ItemsSource="{Binding MemberInfoList, Mode=OneWay}" SelectedItem="{Binding TappedMember.Value, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="{Binding ProfileImageURL}" HeightRequest="150" WidthRequest="150"/>
+                            <Label Text="{Binding Name}" FontSize="Large"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 </ContentPage>

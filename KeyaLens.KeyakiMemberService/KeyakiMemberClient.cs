@@ -48,6 +48,7 @@ namespace KeyaLens.KeyakiMemberService
                .ToList();
 
                 MemberCollection.AddRangeOnScheduler(memberList);
+                MemberCollection.AddOnScheduler(new KeyakiMemberInfo() { Name = "欅坂46", memberPageURL = "www.yahoo.co.jp", ProfileImageURL = "www.yahoo.co.jp" });
             }
         }
     }

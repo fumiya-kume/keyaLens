@@ -21,8 +21,8 @@ namespace KeyaLens.ViewModels
 
         public ReactiveProperty<string> PhotoURL { get; set; } = new ReactiveProperty<string>();
         public ReadOnlyReactiveCollection<string> TagList { get; set; }
-        public ReactiveProperty<string> TappedMember { get; set; } = new ReactiveProperty<string>();
-
+        public ReadOnlyReactiveCollection<KeyakiMemberInfo> MemberInfoList { get; set; }
+        public ReactiveProperty<KeyakiMemberInfo> TappedMember { get; set; } = new ReactiveProperty<KeyakiMemberInfo>();
 
         public ReactiveCommand TakePhotoCommand { get; private set; } = new ReactiveCommand();
 
@@ -39,13 +39,15 @@ namespace KeyaLens.ViewModels
 
             TagList = customVisionClient.ImageTagList.ToReadOnlyReactiveCollection(tag => tag.TagName);
 
+            MemberInfoList = TagList.ToReadOnlyReactiveCollection(tag => keyakiMembeClient.MemberCollection.First(member => member.Name == tag));
+
             TakePhotoCommand.Subscribe(_ => { cameraClient.TakePhoto(); });
 
             TappedMember
-                .Where(memberName => !string.IsNullOrWhiteSpace(memberName))
+                .Where(memberName => memberName != null && !string.IsNullOrWhiteSpace(memberName.Name))
                 .Subscribe(memberName =>
                 {
-                    var URL = keyakiMembeClient.MemberCollection.First(memberInfo => memberInfo.Name == memberName).memberPageURL;
+                    var URL = keyakiMembeClient.MemberCollection.First(memberInfo => memberInfo.Name == memberName.Name).memberPageURL;
                     Device.OpenUri(new Uri(URL));
                 });
         }
