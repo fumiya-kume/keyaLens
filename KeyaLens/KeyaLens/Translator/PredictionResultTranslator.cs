@@ -25,5 +25,11 @@ namespace KeyaLens.Translator
 
             return new PredictionResultModel() { Name = Name, ProfileImageURL = MemberInfo.ProfileImageURL, ProfileLinkImage = MemberInfo.memberPageURL, ProbablyRank = PredictionResult.Probably };
         }
+
+        static PredictionResultModel ProbablyToPercent(PredictionResultModel model)
+        {
+            model.ProbablyRank = model.ProbablyRank * 100;
+            return model;
+        }
     }
 }
