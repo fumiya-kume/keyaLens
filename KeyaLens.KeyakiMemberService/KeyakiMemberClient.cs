@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KeyaLens.KeyakiMemberService
 {
-    public class KeyakiMemberClient : IKeyakiMemberClient
+    public class KeyakiMemberClient :IKeyakiMemberClient
     {
         public ReactiveCollection<KeyakiMemberInfo> MemberCollection { get; set; } = new ReactiveCollection<KeyakiMemberInfo>();
 
@@ -41,7 +41,7 @@ namespace KeyaLens.KeyakiMemberService
                      var MemberPageURL = $"http://www.keyakizaka46.com/s/k46o/artist/{MemberID}";
 
                      var ProfileImageURL = node.Descendants("img").First().GetAttributeValue("src", "");
-
+                     
                      return new KeyakiMemberInfo() { Name = name, memberPageURL = MemberPageURL, ProfileImageURL = ProfileImageURL };
                  })
                .Distinct()

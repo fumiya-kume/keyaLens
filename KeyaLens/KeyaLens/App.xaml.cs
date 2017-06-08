@@ -5,6 +5,7 @@ using KeyaLens.CameraService;
 using Microsoft.Practices.Unity;
 using KeyaLens.CustomVisionService;
 using KeyaLens.KeyakiMemberService;
+using KeyaLens.Translator;
 
 namespace KeyaLens
 {
@@ -27,6 +28,7 @@ namespace KeyaLens
             Container.RegisterType<ICameraClient, CameraClient>(new ContainerControlledLifetimeManager());
             Container.RegisterType<ICustomVisionClient, CustomVisionClient>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IKeyakiMemberClient, KeyakiMemberClient>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IPredictionResultTranslator, PredictionResultTranslator>(new ContainerControlledLifetimeManager());
         }
     }
 }

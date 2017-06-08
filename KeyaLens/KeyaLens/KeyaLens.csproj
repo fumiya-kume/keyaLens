@@ -37,6 +37,8 @@
   <ItemGroup>
     <Compile Include="DataModel\PredictionResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Translator\IPredictionResultTranslator.cs" />
+    <Compile Include="Translator\PredictionResultTranslator.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

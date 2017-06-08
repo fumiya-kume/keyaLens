@@ -30,6 +30,7 @@ namespace KeyaLens.CustomVisionService
             ImageTagList.Clear();
             var TagInfoList = result.Predictions
                 .Select(prefiction => new CustomVisionTagInfo() { TagName = prefiction.Tag, Probably = prefiction.Probability })
+                .Where(prediction => prediction.TagName != "欅坂46")
                 .ToList();
 
             foreach (var item in TagInfoList)
