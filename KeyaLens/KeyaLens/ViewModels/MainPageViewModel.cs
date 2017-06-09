@@ -4,12 +4,9 @@ using Prism.Navigation;
 using System;
 using Reactive.Bindings;
 using System.Reactive.Linq;
-using System.IO;
 using KeyaLens.CustomVisionService;
 using KeyaLens.Translator;
 using System.Linq;
-using System.Collections.Generic;
-using KeyaLens.KeyakiMemberService;
 using Xamarin.Forms;
 using KeyaLens.DataModel;
 
@@ -26,7 +23,7 @@ namespace KeyaLens.ViewModels
         public ReactiveProperty<PredictionResultModel> TappedMember { get; set; } = new ReactiveProperty<PredictionResultModel>();
 
         public ReactiveCommand TakePhotoCommand { get; private set; } = new ReactiveCommand();
-
+        public ReactiveCommand NavigateLicensePage { get; set; } = new ReactiveCommand();
 
         public MainPageViewModel(ICameraClient cameraclient, ICustomVisionClient customvisionclient, IPredictionResultTranslator prefictionresulttranslator)
         {
@@ -49,6 +46,10 @@ namespace KeyaLens.ViewModels
                     var URL = PrefictionResutTranslator.Translate(memberName.Name).ProfileLinkImage;
                     Device.OpenUri(new Uri(URL));
                 });
+
+            NavigateLicensePage.Subscribe(_ => {
+                Device.OpenUri(new Uri(@"https://fumiya-kume.github.io/InfomationOfCopyright/KeyaLens/UWP.V1.html"));
+            });
         }
 
         public void OnNavigatedFrom(NavigationParameters parameters)

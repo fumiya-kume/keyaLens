@@ -5,6 +5,9 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="KeyaLens.Views.MainPage"
              Title="KeyaLens">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="License Info" Command="{Binding NavigateLicensePage}" />
+    </ContentPage.ToolbarItems>
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
         <Button Text="TakePhoto" Command="{Binding TakePhotoCommand}"/>
         <ListView HasUnevenRows="True" ItemsSource="{Binding MemberInfoList, Mode=OneWay}" SelectedItem="{Binding TappedMember.Value, Mode=TwoWay}">
