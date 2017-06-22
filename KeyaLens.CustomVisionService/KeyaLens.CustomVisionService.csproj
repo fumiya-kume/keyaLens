@@ -40,10 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Cognitive.CustomVision.Prediction">
-      <HintPath>..\..\ClassLibrary1\packages\Microsoft.Cognitive.CustomVision.Prediction.1.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Microsoft.Cognitive.CustomVision.Prediction.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Cognitive.CustomVision.Prediction.1.0.0\lib\dotnet\Microsoft.Cognitive.CustomVision.Prediction.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Cognitive.CustomVision.Training">
-      <HintPath>..\..\ClassLibrary1\packages\Microsoft.Cognitive.CustomVision.Training.1.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Microsoft.Cognitive.CustomVision.Training.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Cognitive.CustomVision.Training.1.0.0\lib\dotnet\Microsoft.Cognitive.CustomVision.Training.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.2\lib\netstandard1.1\Microsoft.Rest.ClientRuntime.dll</HintPath>

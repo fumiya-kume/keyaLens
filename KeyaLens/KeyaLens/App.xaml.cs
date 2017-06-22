@@ -6,6 +6,7 @@ using Microsoft.Practices.Unity;
 using KeyaLens.CustomVisionService;
 using KeyaLens.KeyakiMemberService;
 using KeyaLens.Translator;
+using KeyaLens.UseCase;
 
 namespace KeyaLens
 {
@@ -29,6 +30,7 @@ namespace KeyaLens
             Container.RegisterType<ICustomVisionClient, CustomVisionClient>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IKeyakiMemberClient, KeyakiMemberClient>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IPredictionResultTranslator, PredictionResultTranslator>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IKeyakiFaceAnalyzeUseCase, KeyakiFaceAnalyzeUseCase>(new ContainerControlledLifetimeManager());
         }
     }
 }

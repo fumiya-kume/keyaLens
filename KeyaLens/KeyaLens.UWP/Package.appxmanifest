@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="44836KumeFumiya.KeyaLens" Publisher="CN=19ACE751-AE98-4FA0-A70B-EDD02C965681" Version="1.1.4.0" />
+  <Identity Name="44836KumeFumiya.KeyaLens" Publisher="CN=19ACE751-AE98-4FA0-A70B-EDD02C965681" Version="1.1.6.0" />
   <mp:PhoneIdentity PhoneProductId="e2a4724b-a565-4b68-aa04-9c7114aa4a1a" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>KeyaLens</DisplayName>

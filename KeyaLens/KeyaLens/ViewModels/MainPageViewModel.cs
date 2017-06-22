@@ -9,15 +9,17 @@ using KeyaLens.Translator;
 using System.Linq;
 using Xamarin.Forms;
 using KeyaLens.DataModel;
+using KeyaLens.UseCase;
 
 namespace KeyaLens.ViewModels
 {
     public class MainPageViewModel : BindableBase, INavigationAware
     {
-        private readonly ICameraClient cameraClient;
-        private readonly ICustomVisionClient customVisionClient;
-        private readonly IPredictionResultTranslator PrefictionResutTranslator;
 
+        private readonly IPredictionResultTranslator _PrefictionResutTranslator;
+        private readonly IKeyakiFaceAnalyzeUseCase _keyakiFaceAnalyzeUseCase;
+
+        public ReactiveProperty<bool> IsBusy { get; set; } = new ReactiveProperty<bool>(false);
         public ReactiveProperty<string> PhotoURL { get; set; } = new ReactiveProperty<string>();
         public ReadOnlyReactiveCollection<PredictionResultModel> MemberInfoList { get; set; }
         public ReactiveProperty<PredictionResultModel> TappedMember { get; set; } = new ReactiveProperty<PredictionResultModel>();
@@ -25,29 +27,30 @@ namespace KeyaLens.ViewModels
         public ReactiveCommand TakePhotoCommand { get; private set; } = new ReactiveCommand();
         public ReactiveCommand NavigateLicensePage { get; set; } = new ReactiveCommand();
 
-        public MainPageViewModel(ICameraClient cameraclient, ICustomVisionClient customvisionclient, IPredictionResultTranslator prefictionresulttranslator)
+        public MainPageViewModel(IKeyakiFaceAnalyzeUseCase keyakiFaceAnalyzeUseCase,IPredictionResultTranslator prefictionresulttranslator)
         {
-            cameraClient = cameraclient;
-            customVisionClient = customvisionclient;
-            PrefictionResutTranslator = prefictionresulttranslator;
+            _PrefictionResutTranslator = prefictionresulttranslator;
+            _keyakiFaceAnalyzeUseCase = keyakiFaceAnalyzeUseCase;
 
-            PhotoURL = cameraClient.ImageURL;
+            MemberInfoList = _keyakiFaceAnalyzeUseCase.MemberDataList.ToReadOnlyReactiveCollection();
 
-            PhotoURL.Subscribe(URL => { customVisionClient.PredicateImageFromMemoryStream(URL); });
+            IsBusy = _keyakiFaceAnalyzeUseCase.IsAnalyzing;
 
-            MemberInfoList = customVisionClient.ImageTagList.ToReadOnlyReactiveCollection(tag => PrefictionResutTranslator.Translate(tag.TagName));
-
-            TakePhotoCommand.Subscribe(_ => { cameraClient.TakePhoto(); });
+            TakePhotoCommand.Subscribe(_ =>
+            {
+                _keyakiFaceAnalyzeUseCase.FaceAnalyze();
+            });
 
             TappedMember
                 .Where(memberName => memberName != null && !string.IsNullOrWhiteSpace(memberName.Name))
                 .Subscribe(memberName =>
                 {
-                    var URL = PrefictionResutTranslator.Translate(memberName.Name).ProfileLinkImage;
+                    var URL = _PrefictionResutTranslator.Translate(memberName.Name).ProfileLinkImage;
                     Device.OpenUri(new Uri(URL));
                 });
 
-            NavigateLicensePage.Subscribe(_ => {
+            NavigateLicensePage.Subscribe(_ =>
+            {
                 Device.OpenUri(new Uri(@"https://fumiya-kume.github.io/InfomationOfCopyright/KeyaLens/UWP.V1.html"));
             });
         }

@@ -8,22 +8,26 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="License Info" Command="{Binding NavigateLicensePage}" />
     </ContentPage.ToolbarItems>
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Button Text="TakePhoto" Command="{Binding TakePhotoCommand}"/>
-        <ListView HasUnevenRows="True" ItemsSource="{Binding MemberInfoList, Mode=OneWay}" SelectedItem="{Binding TappedMember.Value, Mode=TwoWay}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Image Source="{Binding ProfileImageURL}" HeightRequest="150" WidthRequest="150"/>
-                            <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding Name}" FontSize="Large"/>
-                                <Label Text="{Binding ProbablyRank, StringFormat='{0:N} %'}" FontSize="Medium"/>
+    <Grid>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Button Text="TakePhoto" Command="{Binding TakePhotoCommand}"/>
+            <ListView HasUnevenRows="True" ItemsSource="{Binding MemberInfoList, Mode=OneWay}" SelectedItem="{Binding TappedMember.Value, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding ProfileImageURL}" HeightRequest="150" WidthRequest="150"/>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Name}" FontSize="Large"/>
+                                    <Label Text="{Binding ProbablyRank, StringFormat='{0:N} %'}" FontSize="Medium"/>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <ActivityIndicator IsVisible="{Binding IsBusy.Value}"/>
+    </Grid>
+    
 </ContentPage>
