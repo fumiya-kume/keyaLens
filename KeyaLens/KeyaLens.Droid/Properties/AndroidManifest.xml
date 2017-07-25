@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="kuxu.nagoya.keyalens">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="kuxu.nagoya.keyalenses" android:versionCode="2">
 	<uses-sdk android:minSdkVersion="21" />
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<application android:label="KeyaLens.Droid" android:theme="@style/MyTheme" android:icon="@drawable/icon"></application>
 </manifest>

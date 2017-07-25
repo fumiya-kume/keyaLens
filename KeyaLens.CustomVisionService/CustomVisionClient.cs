@@ -69,7 +69,7 @@ namespace KeyaLens.CustomVisionService
             client.DefaultRequestHeaders.Add("Prediction-Key", "85d4fb9d76f74ddf9098ea6a5a15b6d0");
 
             // Prediction URL - replace this example URL with your valid prediction URL.
-            string url = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/233dc05e-f8e2-4f1c-a02d-b69fd8efd53c/image?iterationId=3c5b944d-a3e3-4ef9-8036-0f33d6e224f9";
+            string url = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/733f47d4-602b-4311-981e-af547501e759/image?iterationId=e3b0fe01-681f-4425-89fc-6fef238c198f";
 
             HttpResponseMessage response;
 
