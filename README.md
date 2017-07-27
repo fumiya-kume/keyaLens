@@ -4,7 +4,7 @@
 
 ## Unit Test
 
-[![Unit Test Status]](https://keyaki-project.visualstudio.com/_apis/public/build/definitions/dd6db27a-84ca-466c-adcf-361c73c857cc/12/badge)
+![](https://keyaki-project.visualstudio.com/_apis/public/build/definitions/dd6db27a-84ca-466c-adcf-361c73c857cc/12/badge)
 
 ## iOS
 
