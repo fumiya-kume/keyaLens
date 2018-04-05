@@ -14,7 +14,9 @@ namespace keyalens.ViewModels
     {
         private readonly INavigationService _navigationService;
 
+        public ReactiveCommand NavigateTutorialPage { get; set; } = new ReactiveCommand();
         public ReactiveCommand NavigateCameraPage { get; set; } = new ReactiveCommand();
+        public ReactiveCommand NavigateSettingPage { get; set; } = new ReactiveCommand();
 
         public MainPageViewModel(INavigationService navigationService) 
             : base (navigationService)
@@ -22,8 +24,14 @@ namespace keyalens.ViewModels
             _navigationService = navigationService;
             Title = "Main Page";
 
+            NavigateTutorialPage
+                .Subscribe(() => _navigationService.NavigateAsync(nameof(TutorialPage)));
+
             NavigateCameraPage
                 .Subscribe(() => _navigationService.NavigateAsync(nameof(CameraPage)));
+
+            NavigateSettingPage
+                .Subscribe(() => _navigationService.NavigateAsync(nameof(SettingPage)));
         }
     }
 }

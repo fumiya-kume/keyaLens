@@ -8,10 +8,10 @@
     <MasterDetailPage.Master>
         <ContentPage Title="メニュー画面">
             <StackLayout>
-                <Button Text="チュートリアル画面"></Button>
+                <Button Text="チュートリアル画面" Command="{Binding NavigateTutorialPage}"></Button>
                 <Button Text="撮影画面" Command="{Binding NavigateCameraPage}"/>
                 <!--<Button Text="統計情報"/>-->
-                <Button Text="設定"/>
+                <Button Text="設定" Command="{Binding NavigateSettingPage}"/>
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>

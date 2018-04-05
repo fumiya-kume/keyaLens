@@ -43,6 +43,7 @@ namespace keyalens
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<CameraPage>();
             containerRegistry.RegisterForNavigation<TutorialPage>();
+            containerRegistry.RegisterForNavigation<SettingPage>();
         }
     }
 }
