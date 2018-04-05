@@ -9,11 +9,7 @@
         <ContentPage Title="メニュー画面">
             <StackLayout>
                 <Button Text="チュートリアル画面"></Button>
-                <Label Text="撮影画面" BackgroundColor="LightGray" HorizontalTextAlignment="Center" FontSize="Medium">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NavigateCameraPage}"></TapGestureRecognizer>
-                    </Label.GestureRecognizers>
-                </Label>
+                <Button Text="撮影画面" Command="{Binding NavigateCameraPage}"/>
                 <!--<Button Text="統計情報"/>-->
                 <Button Text="設定"/>
             </StackLayout>
