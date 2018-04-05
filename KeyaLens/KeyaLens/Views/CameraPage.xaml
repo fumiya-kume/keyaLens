@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="keyalens.Views.CameraPage">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <Label Text="{Binding Predictname.Value,StringFormat='{0} に似てるね！'}"></Label>
+        <Image Source="{Binding TakePhotoUrl.Value}"></Image>
+        <Image Source="https://lh3.googleusercontent.com/Sl_2-nudfPyM-SWC97trWeTslsNCgLFUhproGnIx6ISRVbe1tP38y958qBjkzIxoNf73JC_yi0x8zdf7yXzmSi83AH6Ep0LMWsgxWio1NtlqMbkMmUwpphSjc4g96mlCyJc1-AJv3k2QyRrIBwSizONYPt5jdLWW_qvjcfBFISUqKjTVClGqZGye45ezglW0tN7DjajbnmfllhwubR_U23ViGVWeKINd8DW18iPFgJDgfZ5V473bI-Kln4E5eaFkr1veHiqwnUhYaDRKjwluHzpff7UDxSWwqkyMmmcXIBUkViaQRm8jvuXZ9sT1bg4oH2ebF6bHxB9XuEunuXnPgehZcyxQJYKgLSaJwRp8e1P2Qcspx2y5mt-wJpn_nZOlfu_yhm_oJ8ysUmmlDRHdZKn4OnkwlIoNaxBAg5jbCShnVWndKWH9mB0yawN2so1q-1EQDWHmgNF5OWaYNVH1JrF6vCRWupjsvFpkSSMfZF5msJvGJK9yspLWgONuRQL58VQXNbENp_NDycDDNVQuQYgpClyfKvwWkW7gymSUmLY0ozF-vTnt4OFWjdcjGQ76Kheux92vGsrCxTvlT4Btg0gccYcPvE849O8d1dyNjW07X2S93QHefp39J1pNCuYHOnL620KEz1HJ91wOm28AIInWV1xo6JnYxw=s256-no">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding TakePhotoCommand}" />
+            </Image.GestureRecognizers>
+        </Image>
+    </StackLayout>
+</ContentPage>

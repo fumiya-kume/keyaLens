@@ -26,6 +26,8 @@ namespace keyalens.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Reactive.Bindings.Resource.String.ApplicationName = global::keyalens.Droid.Resource.String.ApplicationName;
+			global::Reactive.Bindings.Resource.String.Hello = global::keyalens.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::keyalens.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -3624,6 +3626,12 @@ namespace keyalens.Droid
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f09003f
+			public const int ApplicationName = 2131296319;
+			
+			// aapt resource value: 0x7f09003e
+			public const int Hello = 2131296318;
 			
 			// aapt resource value: 0x7f090015
 			public const int abc_action_bar_home_description = 2131296277;
