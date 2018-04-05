@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Cognitive.CustomVision.Prediction;
-using Microsoft.Cognitive.CustomVision.Prediction.Models;
+//using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Keyalens.Cognitive
