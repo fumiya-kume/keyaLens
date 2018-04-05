@@ -1,10 +1,14 @@
-﻿using Prism;
+﻿using keyalens.Usecase;
+using Prism;
 using Prism.Ioc;
 using keyalens.ViewModels;
 using keyalens.Views;
+using Keyalens.AzureBlob;
+using Keyalens.Camera;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.Unity;
+using Keyalens.Cognitive;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace keyalens
@@ -24,13 +28,20 @@ namespace keyalens
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync($"NavigationPage/{nameof(CameraPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+
+            containerRegistry.Register<ICameraService, CameraService>();
+            containerRegistry.Register<ICustomVisionService, CustomVisionService>();
+            containerRegistry.Register<IBlobService, BlobService>();
+            containerRegistry.Register<IFaceAnalyzeUsecase, FaceAnalyzeUsecase>();
+
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
+            containerRegistry.RegisterForNavigation<CameraPage>();
         }
     }
 }
