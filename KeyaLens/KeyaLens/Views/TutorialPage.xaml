@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="チュートリアル画面"
+             x:Class="keyalens.Views.TutorialPage">
+    <StackLayout Orientation="Vertical">
+        <Label FontSize="Large">KeyaLensの使い方</Label>
+        <Label FontSize="Medium">1. 写真を撮影します。</Label>
+        <Label FontSize="Medium">2. しばらく待つと結果が返ってきます！。</Label>
+    </StackLayout>
+</ContentPage>
