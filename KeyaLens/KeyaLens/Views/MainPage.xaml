@@ -1,23 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:keyalens.Views;assembly=keyalens"
              x:Class="keyalens.Views.MainPage"
              Title="Keyalens">
 
     <MasterDetailPage.Master>
         <ContentPage Title="メニュー画面">
             <StackLayout>
-                <Button Text="撮影画面"/>
-                <Button Text="統計情報"/>
-                <Button Text="設定"/>
+                <Button Text="チュートリアル画面" Command="{Binding NavigateTutorialPage}"></Button>
+                <Button Text="撮影画面" Command="{Binding NavigateCameraPage}"/>
+                <!--<Button Text="統計情報"/>-->
+                <Button Text="設定" Command="{Binding NavigateSettingPage}"/>
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <ContentPage Title="撮影画面">
-            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                <Label Text="Welcome to Xamarin Forms and Prism!" />
-            </StackLayout>
-        </ContentPage>
+        <views:TutorialPage/>
     </MasterDetailPage.Detail>
 </MasterDetailPage>

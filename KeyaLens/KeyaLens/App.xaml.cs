@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.Unity;
 using Keyalens.Cognitive;
+using Prism.Navigation;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace keyalens
@@ -28,12 +29,11 @@ namespace keyalens
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync($"NavigationPage/{nameof(CameraPage)}");
+            await NavigationService.NavigateAsync($"NavigationPage/{nameof(MainPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
             containerRegistry.Register<ICameraService, CameraService>();
             containerRegistry.Register<ICustomVisionService, CustomVisionService>();
             containerRegistry.Register<IBlobService, BlobService>();
@@ -42,6 +42,8 @@ namespace keyalens
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<CameraPage>();
+            containerRegistry.RegisterForNavigation<TutorialPage>();
+            containerRegistry.RegisterForNavigation<SettingPage>();
         }
     }
 }

@@ -18,6 +18,7 @@ namespace keyalens.Usecase
         private readonly ICustomVisionService _customVisionService;
 
         public ReactiveProperty<string> TakeImageUrl { get; set; } = new ReactiveProperty<string>();
+        public ReactiveProperty<bool> IsLoading { get; set; } = new ReactiveProperty<bool>(false);
         public ReactiveProperty<string> PredictName { get; set; } = new ReactiveProperty<string>();
 
         public FaceAnalyzeUsecase(ICameraService cameraService, IBlobService blobService, ICustomVisionService customVisionService)
@@ -29,6 +30,8 @@ namespace keyalens.Usecase
 
         public async Task Analyze()
         {
+            IsLoading.Value = true;
+
             var cameraUrl = await _cameraService.TakePhotoAsync();
 
             TakeImageUrl.Value = cameraUrl;
@@ -41,6 +44,14 @@ namespace keyalens.Usecase
                 var predictResult = await _customVisionService.PreditionAsync(blobUrl);
                 PredictName.Value = predictResult.OrderBy(prediction => prediction.Probability).First().Tag;
             }
+
+            IsLoading.Value = false;
+        }
+
+        public void ResetAnalyzeResult()
+        {
+            TakeImageUrl.Value = "";
+            PredictName.Value = "";
         }
     }
 }
